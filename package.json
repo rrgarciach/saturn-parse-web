@@ -1,0 +1,9 @@
+{
+  "name": "saturn-parse-web",
+  "description": "Ionic Web app for Saturn Parse server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~4.4.3"
+  }
+}

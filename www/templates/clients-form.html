@@ -1,0 +1,135 @@
+<ion-view id="clients-form" view-title="{{vm.actionLabel | translate}}" cache-view="false">
+    <ion-nav-buttons side="right">
+        <!--<button class="button button-clear align-left" ng-click="vm.closeOrder()">Volver</button>-->
+        <button class="button button-icon icon ion-checkmark-circled icon-right"
+                ng-disabled="vm.saveForm.$invalid || vm.saveForm.$pristine"
+                ng-click="vm.promptSave()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <form name="vm.saveForm">
+            <ion-list>
+
+                <ion-item class="item-divider item-icon-left">
+                    <i class="icon ion-person"></i>
+                    {{'profile' | translate}}
+                </ion-item>
+
+                <ion-toggle ng-model="vm.client.profile.isPersonaMoral">{{'persona_moral' | translate}}</ion-toggle>
+
+                <ion-item class="item-input item-select" ng-if="!vm.userIsPromoter()">
+                    <span class="input-label">{{'promoterName' | translate}}*:</span>
+                    <select ng-options="promoter.fullName for promoter in vm.promoters track by promoter.id"
+                            ng-model="vm.client.promoter"
+                            ng-required="!vm.userIsPromoter()">
+                    </select>
+                    <!--<input type="text"-->
+                           <!--ng-if="vm.actionLabel !== 'edit_client'"-->
+                           <!--ng-model="vm.client.promoter.fullName">-->
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'folio' | translate}}:</span>
+                    <input type="tel"
+                           ng-if="vm.actionLabel !== 'edit_client'"
+                           ng-model="vm.client.folio">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'firstName' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.firstName">
+                </ion-item>
+
+                <ion-item class="item-input" ng-if="!vm.client.profile.isPersonaMoral">
+                    <span class="input-label">{{'lastName' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="!vm.client.profile.isPersonaMoral"
+                           ng-model="vm.client.profile.lastName">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'rfc' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.rfc">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'email' | translate}}*:</span>
+                    <input type="email"
+                           ng-required="true"
+                           ng-model="vm.client.email">
+                </ion-item>
+
+                <ion-item class="item-divider item-icon-left">
+                    <i class="icon ion-location"></i>
+                    {{'address' | translate}}
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'street' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.street">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'number' | translate}}*:</span>
+                    <input type="number"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.number">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'interior' | translate}}:</span>
+                    <input type="text"
+                           ng-model="vm.client.profile.address.interior">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'neighborhood' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.neighborhood">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'postalCode' | translate}}*:</span>
+                    <input type="number"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.postalCode">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'city' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.city">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'state' | translate}}*:</span>
+                    <input type="text"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.state">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'phone1' | translate}}*:</span>
+                    <input type="tel"
+                           ng-required="true"
+                           ng-model="vm.client.profile.address.phone1">
+                </ion-item>
+
+                <ion-item class="item-input">
+                    <span class="input-label">{{'phone2' | translate}}:</span>
+                    <input type="tel"
+                           ng-model="vm.client.profile.address.phone2">
+                </ion-item>
+
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view>

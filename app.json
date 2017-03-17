@@ -1,0 +1,7 @@
+{
+  "name": "Saturn Parse Mobile",
+  "description": "Mobile application using Ionic v1 with AngularJS for Heroku",
+  "repository": "https://github.com/rrgarciach/saturn-parse-web",
+  "logo": "https://www.truperenlinea.com/reng/favicon.ico",
+  "keywords": ["ionic", "static"]
+}

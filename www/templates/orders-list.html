@@ -1,0 +1,56 @@
+<ion-view view-title="{{'orders' | translate}}" cache-view="false">
+
+    <ion-nav-buttons side="right">
+        <a class="button button-icon  icon ion-plus-circled" href="#/app/orders/new"></a>
+    </ion-nav-buttons>
+
+    <!--<ion-nav-buttons side="right">-->
+        <!--<a class="button button-icon icon ion-funnel" ng-click="vm.openFiltersModal()"></a>-->
+    <!--</ion-nav-buttons>-->
+
+    <!--<div class="bar bar-subheader item-input-inset" no-tap-scroll="true">-->
+        <!--<label class="item-input-wrapper">-->
+            <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
+            <!--<input type="search"-->
+                   <!--ng-model="vm.filter.searchValue"-->
+                   <!--ng-change="vm.applyFilters()"-->
+                   <!--ng-model-options="{ debounce: 1000 }"-->
+                   <!--placeholder="Buscar por {{vm.filter.searchBy | lowercase}}...">-->
+        <!--</label>-->
+    <!--</div>-->
+
+    <!--<ion-content class="has-subheader">-->
+    <ion-content>
+
+        <ion-list>
+            <ion-item ng-repeat="(key, order) in vm.orders track by $index"
+                      ng-if="!vm.downloadAction"
+                      href="#/app/orders/view/{{order.id}}">
+                <h2>{{order.get('client').fullName}}</h2>
+                <a href=""></a>
+                <p class="item-note">{{order.get('createdAt') | date: 'dd/MM/yyyy'}}</p>
+                <p>Pedido No. {{order.get('folio')}}</p>
+                <p class="item-note">{{order.get('totals') | centsCurrency}}</p>
+                <p>Estatus: {{order.get('status') | orderStatusFilter}}</p>
+            </ion-item>
+            <ion-item ng-repeat="(key, order) in vm.orders track by $index"
+                      ng-if="vm.downloadAction"
+                      href="{{vm.ENV.PARSE_SERVER_URL}}/orders/export/{{order.folio}}">
+                <h2>{{order.get('client').fullName}}</h2>
+                <a href=""></a>
+                <p class="item-note">{{order.get('createdAt') | date: 'dd/MM/yyyy'}}</p>
+                <p>Pedido No. {{order.get('folio')}}</p>
+                <p class="item-note">{{order.get('totals') | centsCurrency}}</p>
+                <p>Estatus: {{order.get('status') | orderStatusFilter}}</p>
+            </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll
+                immediate-check="false"
+                ng-if="vm.moreData"
+                on-infinite="vm.loadMore()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+
+</ion-view>

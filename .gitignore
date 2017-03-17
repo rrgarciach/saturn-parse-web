@@ -3,5 +3,5 @@
 node_modules/
 logs/
 npm-debug.log
-dist/
+./dist/
 config/local.env.js
